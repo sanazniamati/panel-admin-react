@@ -1,8 +1,10 @@
 /** @format */
 
-import { Breadcrumb, Button } from "antd";
+import { Breadcrumb, Button, Flex, Input, Space } from "antd";
 import CustomersTable from "../../components/CustomerTable";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+
+import CustomersTableCopy from "../../components/CustomerTableCopy/index";
 
 const Customers: React.FC = () => {
   return (
@@ -19,48 +21,22 @@ const Customers: React.FC = () => {
         ]}
       />
       {/* button &serch */}
-      <div
+      <Flex
         style={{
-          display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
           marginTop: 32,
-          background: "pink",
+          // background: "pink",
         }}
       >
-        <div>
-          <Button type="primary" ghost>
-            <PlusOutlined />
-            New Customer
-          </Button>
-        </div>
-        <div>
-          <Button icon={<SearchOutlined />}>Search</Button>
-        </div>
-      </div>
+        <Button type="primary" ghost size="large">
+          <PlusOutlined />
+          New Customer
+        </Button>
+        <Input style={{ width: "30%" }} size="large" placeholder="search" prefix={<SearchOutlined />} />
+      </Flex>
       {/* table */}
-      <div
-        style={{
-          marginTop: 16,
-          background: "green",
-        }}
-      >
-        <div
-          style={{
-            padding: 16,
-            background: "lightGreen",
-          }}
-        >
-          <CustomersTable />
-        </div>
-        <div
-          style={{
-            padding: 16,
-          }}
-        >
-          paginate
-        </div>
-      </div>
+      <CustomersTable />
+      {/* <CustomersTableCopy /> */}
     </div>
   );
 };

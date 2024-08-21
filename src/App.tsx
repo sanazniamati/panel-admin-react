@@ -4,12 +4,12 @@ import PageContent from "./components/PageContent";
 import SideMenu from "./components/SideMenu";
 import "./App.css";
 import { useState } from "react";
-import { Button, Layout, Menu, theme } from "antd";
+import { Layout } from "antd";
 
 function App() {
   const [collapsed, setCollapsed] = useState<boolean>(false);
   return (
-    <Layout className="App" style={{ background: "red" }}>
+    <Layout>
       <SideMenu collapsed={collapsed} />
       <PageContent collapsed={collapsed} setCollapsed={setCollapsed} />
     </Layout>

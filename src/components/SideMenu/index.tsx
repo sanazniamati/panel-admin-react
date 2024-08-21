@@ -8,10 +8,14 @@ import {
   ControlOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Layout, Menu, Typography } from "antd";
 import { useEffect, useState } from "react";
-const { Header, Sider, Content } = Layout;
+const { Sider } = Layout;
 import { useLocation, useNavigate } from "react-router-dom";
+const { Title } = Typography;
+
+// img
+import Brand from "../../assets/img/Brand..png";
 
 interface SideMenuPropsInterface {
   collapsed: boolean;
@@ -28,13 +32,14 @@ const SideMenu: React.FC<SideMenuPropsInterface> = ({ collapsed }) => {
   }, [location.pathname]);
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
-      {/* <div className="demo-logo-vertical" /> */}
-      <div style={{ border: "5px", padding: 20, color: "white" }}>Brand .</div>
+      {/* <img src={Brand} alt="Brand/> */}
+      <Title level={4} style={{ color: "white", marginLeft: 32 }}>
+        Brand .
+      </Title>
       <Menu
         theme="dark"
         mode="inline"
         onClick={(item) => {
-          //item.key
           navigate(item.key);
         }}
         selectedKeys={[selectedKeys]}
@@ -72,7 +77,6 @@ const SideMenu: React.FC<SideMenuPropsInterface> = ({ collapsed }) => {
         ]}
       />
     </Sider>
-    // </Layout>
   );
 };
 

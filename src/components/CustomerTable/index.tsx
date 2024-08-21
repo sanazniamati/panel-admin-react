@@ -1,8 +1,10 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import type { TableColumnsType, TableProps } from "antd";
-import { Button, Space, Table } from "antd";
+import { Badge, Table, Tag } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+import { CustomersDataType, getCustomers } from "../../API";
 
 type OnChange = NonNullable<TableProps<DataType>["onChange"]>;
 type Filters = Parameters<OnChange>[1];
@@ -11,38 +13,23 @@ type GetSingle<T> = T extends (infer U)[] ? U : never;
 type Sorts = GetSingle<Parameters<OnChange>[2]>;
 
 interface DataType {
-  key: string;
+  key: React.Key;
   name: string;
-  age: number;
-  address: string;
+  status: "Approved" | "Blocked" | "Rejected";
+  email: string;
+  birthDate: string;
 }
 
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+const dataSource: DataType[] = [];
+for (let i = 0; i < 100; i++) {
+  dataSource.push({
+    key: i,
+    name: `Edward ${i}`,
+    status: "Approved",
+    email: `user ${i}@yahoo.com`,
+    birthDate: `1996-5-${i}`,
+  });
+}
 
 const CustomersTable: React.FC = () => {
   const [filteredInfo, setFilteredInfo] = useState<Filters>({});
@@ -54,25 +41,16 @@ const CustomersTable: React.FC = () => {
     setSortedInfo(sorter as Sorts);
   };
 
-  const clearFilters = () => {
-    setFilteredInfo({});
-  };
-
-  const clearAll = () => {
-    setFilteredInfo({});
-    setSortedInfo({});
-  };
-
-  const setAgeSort = () => {
-    setSortedInfo({
-      order: "descend",
-      columnKey: "age",
-    });
-  };
-
   const columns: TableColumnsType<DataType> = [
     {
-      title: "Name",
+      title: "#",
+      dataIndex: "key",
+      rowScope: "row",
+      width: 40,
+      fixed: "left",
+    },
+    {
+      title: "Full Name",
       dataIndex: "name",
       key: "name",
       filters: [
@@ -86,38 +64,70 @@ const CustomersTable: React.FC = () => {
       ellipsis: true,
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      sorter: (a, b) => a.age - b.age,
-      sortOrder: sortedInfo.columnKey === "age" ? sortedInfo.order : null,
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      filters: [
+        { text: "Approved", value: "Approved" },
+        { text: "Blocked", value: "Blocked" },
+        { text: "Rejected", value: "Rejected" },
+      ],
+      filteredValue: filteredInfo.status || null,
+      onFilter: (value, record) => record.status.includes(value as string),
+      ellipsis: true,
+      width: "20%",
+      // TODO
+      // render: () => {
+      //   return <Badge size="default" status="success" />;
+      // },
+    },
+
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      sorter: (a, b) => a.email.length - b.email.length,
+      sortOrder: sortedInfo.columnKey === "email" ? sortedInfo.order : null,
       ellipsis: true,
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Date of Birth",
+      dataIndex: "birthDate",
+      key: "birthDate",
       filters: [
-        { text: "London", value: "London" },
-        { text: "New York", value: "New York" },
+        { text: "year", value: "1996-5-2" },
+        // { text: "New York", value: "New York" },
       ],
       filteredValue: filteredInfo.address || null,
-      onFilter: (value, record) => record.address.includes(value as string),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortOrder: sortedInfo.columnKey === "address" ? sortedInfo.order : null,
+      onFilter: (value, record) => record.birthDate.includes(value as string),
+      sorter: (a, b) => a.birthDate.length - b.birthDate.length,
+      sortOrder: sortedInfo.columnKey === "birthDate" ? sortedInfo.order : null,
       ellipsis: true,
+    },
+    {
+      title: "",
+      dataIndex: "",
+      key: "x",
+      render: () => <EditOutlined />,
     },
   ];
 
   return (
-    <>
-      {/* <Space style={{ marginBottom: 16 }}>
-        <Button onClick={setAgeSort}>Sort age</Button>
-        <Button onClick={clearFilters}>Clear filters</Button>
-        <Button onClick={clearAll}>Clear filters and sorters</Button>
-      </Space> */}
-      <Table columns={columns} dataSource={data} onChange={handleChange} />
-    </>
+    <Table
+      style={{
+        padding: 16,
+        marginTop: 16,
+        // background: "lightGreen",
+      }}
+      columns={columns}
+      dataSource={dataSource}
+      pagination={{
+        pageSize: 10,
+        position: ["bottomLeft"],
+      }}
+      bordered
+      onChange={handleChange}
+    />
   );
 };
 

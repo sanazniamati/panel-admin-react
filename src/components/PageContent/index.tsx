@@ -1,10 +1,8 @@
 /** @format */
 
-import { Breadcrumb, Button, Layout, theme } from "antd";
+import { Layout, theme } from "antd";
 import AppRoutes from "../AppRoutes";
 import AppHeader from "../AppHeader";
-import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
-import CustomersTable from "../CustomerTable";
 
 interface PageContentPropsInterface {
   collapsed: boolean;
@@ -34,9 +32,8 @@ const PageContent: React.FC<PageContentPropsInterface> = ({ collapsed, setCollap
             marginTop: 16,
             fontSize: 46,
             fontWeight: 500,
-            // lineHeight: 72,
             color: "#212529",
-            background: "lightGray",
+            // background: "lightGray",
           }}
         >
           <AppRoutes />
