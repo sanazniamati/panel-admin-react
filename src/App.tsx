@@ -1,18 +1,20 @@
-/** @format */
-
-import PageContent from "./components/PageContent";
-import SideMenu from "./components/SideMenu";
+import { ConfigProvider, ThemeConfig } from "antd";
 import "./App.css";
-import { useState } from "react";
-import { Layout } from "antd";
+import { Routes } from "./routes";
 
 function App() {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const themConfig: ThemeConfig = {
+    components: {
+      Button: {},
+      Table: {
+        headerBg: "transparent",
+      },
+    },
+  };
   return (
-    <Layout>
-      <SideMenu collapsed={collapsed} />
-      <PageContent collapsed={collapsed} setCollapsed={setCollapsed} />
-    </Layout>
+    <ConfigProvider theme={themConfig}>
+      <Routes />
+    </ConfigProvider>
   );
 }
 

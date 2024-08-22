@@ -1,11 +1,16 @@
 /** @format */
 
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { TableColumnsType, TableProps } from "antd";
-import { Badge, Space, Table, Tag } from "antd";
-import { DeleteOutlined, EditOutlined, ExportOutlined } from "@ant-design/icons";
-import { CustomersDataType, getCustomers } from "../../API";
-
+import { Badge, Space } from "antd";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExportOutlined,
+} from "@ant-design/icons";
+// import { CustomersDataType, getCustomers } from "../../API";
+import Table from "antd/es/table";
+import { omit } from "lodash";
 type OnChange = NonNullable<TableProps<DataType>["onChange"]>;
 type Filters = Parameters<OnChange>[1];
 
@@ -62,6 +67,11 @@ const CustomersTable: React.FC = () => {
       sorter: (a, b) => a.name.length - b.name.length,
       sortOrder: sortedInfo.columnKey === "name" ? sortedInfo.order : null,
       ellipsis: true,
+      onCell: (data, index) => {
+        return {
+          className: (index || 0) % 2 !== 0 ? "" : "",
+        };
+      },
     },
     {
       title: "Status",
@@ -155,23 +165,44 @@ const CustomersTable: React.FC = () => {
       },
     },
   ];
-
+  const newColumns: TableColumnsType<DataType> = columns
+    ? columns.map((column) => ({
+        ...column,
+        onCell: (record, index) => {
+          const defaultOnCell = column.onCell
+            ? column.onCell(record, index)
+            : {};
+          const defaultClassName = `${column.className} ${
+            defaultOnCell.className || ""
+          }`;
+          return {
+            ...omit(defaultOnCell, "className"),
+            className:
+              (index || 0) % 2 !== 0
+                ? `${defaultClassName} !bg-[#F2F7FF] text-center`
+                : `${defaultClassName} text-center`,
+          };
+        },
+      }))
+    : [];
   return (
-    <Table
-      style={{
-        padding: 16,
-        marginTop: 16,
-        // background: "lightGreen",
-      }}
-      columns={columns}
-      dataSource={dataSource}
-      pagination={{
-        pageSize: 10,
-        position: ["bottomLeft"],
-      }}
-      bordered
-      onChange={handleChange}
-    />
+    <>
+      <Table
+        style={{
+          padding: 16,
+          marginTop: 16,
+          // background: "lightGreen",
+        }}
+        columns={newColumns}
+        dataSource={dataSource}
+        pagination={{
+          pageSize: 10,
+          position: ["bottomLeft"],
+        }}
+        bordered
+        onChange={handleChange}
+      />
+    </>
   );
 };
 

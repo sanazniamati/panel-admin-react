@@ -1,16 +1,21 @@
 /** @format */
 
 import { Layout, theme } from "antd";
-import AppRoutes from "../AppRoutes";
+// import AppRoutes from "../AppRoutes";
 import AppHeader from "../AppHeader";
+import { Outlet } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
 interface PageContentPropsInterface {
   collapsed: boolean;
-  setCollapsed: any;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
 }
 const { Content } = Layout;
 
-const PageContent: React.FC<PageContentPropsInterface> = ({ collapsed, setCollapsed }) => {
+const PageContent: React.FC<PageContentPropsInterface> = ({
+  collapsed,
+  setCollapsed,
+}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -36,7 +41,7 @@ const PageContent: React.FC<PageContentPropsInterface> = ({ collapsed, setCollap
             // background: "lightGray",
           }}
         >
-          <AppRoutes />
+          <Outlet />
         </div>
       </Content>
     </Layout>

@@ -8,11 +8,10 @@ import {
   ControlOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Space, Typography } from "antd";
+import { Layout, Menu, Space } from "antd";
 import { useEffect, useState } from "react";
 const { Sider } = Layout;
 import { useLocation, useNavigate } from "react-router-dom";
-const { Title } = Typography;
 
 // img
 import Brand from "../../assets/img/Brand..png";
