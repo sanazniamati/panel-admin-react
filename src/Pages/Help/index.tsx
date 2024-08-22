@@ -1,6 +1,6 @@
 /** @format */
 
 const Help: React.FC = () => {
-  return <div>Help</div>;
+  return <div style={{ background: "lightGray", height: "100vh" }}>Help</div>;
 };
 export default Help;

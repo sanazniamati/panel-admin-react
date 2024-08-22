@@ -1,6 +1,6 @@
 /** @format */
 
 const Dashboard: React.FC = () => {
-  return <div>Dashboard</div>;
+  return <div style={{ background: "lightGray", height: "100vh" }}>Dashboard</div>;
 };
 export default Dashboard;

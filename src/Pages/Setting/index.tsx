@@ -1,6 +1,6 @@
 /** @format */
 
 const Setting: React.FC = () => {
-  return <div>Setting</div>;
+  return <div style={{ background: "lightGray", height: "100vh" }}>Setting</div>;
 };
 export default Setting;

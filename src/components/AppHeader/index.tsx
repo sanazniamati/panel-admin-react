@@ -5,16 +5,29 @@ import {
   BellOutlined,
   DownOutlined,
   MailOutlined,
-  // MenuFoldOutlined,
-  // MenuUnfoldOutlined,
-  //   UploadOutlined,
-  //   UserOutlined,
-  //   VideoCameraOutlined,
+  SmileOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Layout, Menu, theme } from "antd";
+import { Badge, Button, Dropdown, Flex, Layout, MenuProps, Space, theme } from "antd";
 import Avatar from "../../assets/img/avatar.jfif";
 
-const { Header, Sider, Content } = Layout;
+const { Header } = Layout;
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: "sanaz",
+  },
+  {
+    key: "2",
+    label: "33 years old",
+    disabled: true,
+  },
+  {
+    key: "3",
+    label: "booshehr",
+    disabled: true,
+  },
+];
 
 interface AppHeaderPropsInterface {
   collapsed: boolean;
@@ -22,7 +35,6 @@ interface AppHeaderPropsInterface {
 }
 
 const AppHeader: React.FC<AppHeaderPropsInterface> = ({ collapsed, setCollapsed }) => {
-  // const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -51,67 +63,76 @@ const AppHeader: React.FC<AppHeaderPropsInterface> = ({ collapsed, setCollapsed 
           height: 40,
         }}
       />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-        }}
+      <Flex
+        gap={"middle"}
+        style={
+          {
+            // background: "pink",
+            // alignItems: "center",
+          }
+        }
       >
-        <div
+        <Flex
+          align="center"
+          justify="center"
           style={{
+            border: 1,
+            borderStyle: "solid",
+            borderColor: "gray",
+            borderRadius: 8,
             width: 40,
             height: 40,
-            background: "gray",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
           }}
         >
           <Badge dot>
             <BellOutlined />
           </Badge>
-        </div>
-        <div
+        </Flex>
+
+        <Flex
+          align="center"
+          justify="center"
           style={{
+            border: 1,
+            borderStyle: "solid",
+            borderColor: "gray",
+            borderRadius: 8,
             width: 40,
             height: 40,
-            background: "yellow",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
           }}
         >
           <MailOutlined />
-        </div>
-        <div
+        </Flex>
+
+        <Flex
+          align="center"
+          justify="center"
           style={{
-            width: 174,
             height: 40,
-            // background: "red",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             border: 1,
+            borderStyle: "solid",
+            borderColor: "gray",
             borderRadius: 8,
-            // borderColor: "#E9ECEF",
-            borderColor: "red",
             gap: 8,
+            padding: 8,
           }}
         >
-          <div>
-            <img
-              src={Avatar}
-              alt="Avatar"
-              style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center" }}
-            />
-          </div>
-          <div style={{ color: "#343A40", fontWeight: 500, fontSize: 14, lineHeight: 24 }}>Derek Alvarado</div>
-          <div>
-            <DownOutlined style={{ width: 6.5, height: 3.5 }} />
-          </div>
-        </div>
-      </div>
+          <img
+            src={Avatar}
+            alt="Avatar"
+            style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center" }}
+          />
+          <Dropdown menu={{ items }}>
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                Sanaz Niamati
+                <DownOutlined />
+              </Space>
+            </a>
+          </Dropdown>
+        </Flex>
+      </Flex>
     </Header>
   );
 };
