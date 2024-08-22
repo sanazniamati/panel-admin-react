@@ -5,8 +5,13 @@ import CustomersTable from "../../components/CustomerTable";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 
 import CustomersTableCopy from "../../components/CustomerTableCopy/index";
+import { useNavigate } from "react-router-dom";
 
 const Customers: React.FC = () => {
+  const navigate = useNavigate();
+  const handleNewCustomer = () => {
+    navigate("/customer/newCustomer");
+  };
   return (
     <div>
       Customers' List
@@ -28,7 +33,7 @@ const Customers: React.FC = () => {
           // background: "pink",
         }}
       >
-        <Button type="primary" ghost size="large">
+        <Button type="primary" ghost size="large" onClick={handleNewCustomer}>
           <PlusOutlined />
           New Customer
         </Button>

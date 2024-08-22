@@ -2,8 +2,8 @@
 
 import React, { ReactNode, useEffect, useState } from "react";
 import type { TableColumnsType, TableProps } from "antd";
-import { Badge, Table, Tag } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Badge, Space, Table, Tag } from "antd";
+import { DeleteOutlined, EditOutlined, ExportOutlined } from "@ant-design/icons";
 import { CustomersDataType, getCustomers } from "../../API";
 
 type OnChange = NonNullable<TableProps<DataType>["onChange"]>;
@@ -77,9 +77,9 @@ const CustomersTable: React.FC = () => {
       ellipsis: true,
       width: "20%",
       // TODO
-      // render: () => {
-      //   return <Badge size="default" status="success" />;
-      // },
+      render: () => {
+        return <Badge size="default" status="success" />;
+      },
     },
 
     {
@@ -106,9 +106,53 @@ const CustomersTable: React.FC = () => {
     },
     {
       title: "",
-      dataIndex: "",
-      key: "x",
-      render: () => <EditOutlined />,
+      dataIndex: "action",
+      key: "action",
+      render: () => {
+        return (
+          <div style={{ display: "flex", gap: 8 }}>
+            <Space
+              style={{
+                width: 40,
+                height: 40,
+                padding: 10,
+                border: 1,
+                borderStyle: "solid",
+                borderColor: "gray",
+                borderRadius: 8,
+              }}
+            >
+              <ExportOutlined />
+            </Space>
+            <Space
+              style={{
+                width: 40,
+                height: 40,
+                padding: 10,
+                border: 1,
+                borderStyle: "solid",
+                borderColor: "gray",
+                borderRadius: 8,
+              }}
+            >
+              <EditOutlined />
+            </Space>
+            <Space
+              style={{
+                width: 40,
+                height: 40,
+                padding: 10,
+                border: 1,
+                borderStyle: "solid",
+                borderColor: "gray",
+                borderRadius: 8,
+              }}
+            >
+              <DeleteOutlined />
+            </Space>
+          </div>
+        );
+      },
     },
   ];
 
