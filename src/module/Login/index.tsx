@@ -1,68 +1,87 @@
-import React from "react";
-import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../routes/routesUrls";
+/** @format */
 
-type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
-};
+import React, { useState } from "react";
+import { Form, Input, Tabs, Checkbox, Button, Card, Flex, FormProps, Space } from "antd";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import { GithubOutlined, GoogleOutlined, LinkedinOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
+import { ROUTES } from "../../routes/routesUrls";
+import { useNavigate } from "react-router-dom";
+import LoginByMail from "./components/loginByMail";
+
+const { TabPane } = Tabs;
+import { FieldType } from "../Login/types/loginFieldType";
+import LoginByMobile from "./components/loginByMobile";
+// import { useLoginUserMutation } from "../../services/authApi";
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const Login: React.FC = () => {
-  const navigate = useNavigate();
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-    localStorage.setItem("userToken", JSON.stringify(values));
-    navigate(ROUTES.home);
+const initialState = {
+  email: "",
+  password: "",
+  remember: true,
+  mobile: "",
+  captcha: "",
+};
+const LoginDemo: React.FC = () => {
+  const [formValue, setFormValue] = useState<FieldType>(initialState);
+  const [showRegister, setShowRegister] = useState(false);
+  const [type, setType] = useState<string>("tab1");
+  const [autoLogin, setAutoLogin] = useState<boolean>(true);
+
+  // const [trigger, { data }] = usePostTodoMutation();
+  // const [trigger, { data }] = useLoginUserMutation();
+
+  const onTabChange = (key: string) => {
+    setType(key);
   };
+
+  const changeAutoLogin = (e: CheckboxChangeEvent) => {
+    setAutoLogin(e.target.checked);
+  };
+  // const handleLoginByMail = () => {
+  //   console.log(data);
+  //   trigger({ email: "sanaz@yahoo.com", password: "123456" });
+  // };
+
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item<FieldType>
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Form.Item>
+    <>
+      {/* <button onClick={handleLoginByMail}>CLICK</button>
+      <h2>{data?.message}</h2> */}
+      <Flex justify="center" align="center" style={{ height: "100vh" }}>
+        <Card style={{ width: 400, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+          <h2>{!showRegister ? "Login" : "Register"}</h2>
+          <Tabs activeKey={type} onChange={onTabChange}>
+            <TabPane tab="Account" key="tab1">
+              <LoginByMail
+                autoLogin={autoLogin}
+                changeAutoLogin={changeAutoLogin}
+                onFinishFailed={onFinishFailed}
+                // onFinish={onFinish}
+                formValue={formValue}
+                setFormValue={setFormValue}
+              />
+            </TabPane>
+            <TabPane tab="Mobile" key="tab2">
+              <LoginByMobile onFinishFailed={onFinishFailed} />
+            </TabPane>
+          </Tabs>
+          <Flex gap={8} style={{ textAlign: "center", marginTop: 16, justifyContent: "space-between" }}>
+            <Space>
+              <GithubOutlined />
+              <LinkedinOutlined />
+              <GoogleOutlined />
+            </Space>
 
-      <Form.Item<FieldType>
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item<FieldType>
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{ offset: 8, span: 16 }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+            <a style={{ float: "right" }} href="">
+              Register
+            </a>
+          </Flex>
+        </Card>
+      </Flex>
+    </>
   );
 };
 
-export default Login;
+export default LoginDemo;

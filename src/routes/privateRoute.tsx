@@ -1,4 +1,6 @@
-import { RouteObject } from "react-router-dom";
+/** @format */
+
+import { RouteObject, Navigate } from "react-router-dom";
 import { ROUTES } from "./routesUrls";
 import Dashboard from "../Pages/Dashboard";
 import Customers from "../Pages/Customers";
@@ -8,6 +10,7 @@ import Messages from "../Pages/Messages";
 import NewCustomer from "../Pages/NewCustomer";
 import Setting from "../Pages/Setting";
 import { MainLayout } from "../template/mainLayout";
+import { replace } from "lodash";
 export const privateRoute: RouteObject[] = [
   {
     path: ROUTES.home,
@@ -17,6 +20,11 @@ export const privateRoute: RouteObject[] = [
         path: ROUTES.home,
         element: <Dashboard />,
       },
+      // TODO :<Navigate to="/login" replace/>
+      // {
+      //   path: ROUTES.home,
+      //   element: {<Navigate to="/login" replace/>},
+      // },
       {
         path: ROUTES.customers,
         element: <Customers />,

@@ -12,10 +12,7 @@ interface PageContentPropsInterface {
 }
 const { Content } = Layout;
 
-const PageContent: React.FC<PageContentPropsInterface> = ({
-  collapsed,
-  setCollapsed,
-}) => {
+const PageContent: React.FC<PageContentPropsInterface> = ({ collapsed, setCollapsed }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
