@@ -7,12 +7,15 @@ import { useLoginUserMutation } from "../../../../services/authApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useAppDispatch } from "../../../../app/hooks";
+import { setUser } from "../../../../featchers/authSlice";
 
 const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
   const navegate = useNavigate();
   const { email, password, mobile, captcha, remember } = formValue;
   const [trigger, { data, isError, isSuccess, error }] = useLoginUserMutation();
-  // const sanaz = useLoginUserMutation();
+
+  const dispatch = useAppDispatch();
 
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     if (email && password) {
@@ -20,9 +23,6 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
     } else {
       toast.error("Please fill all inputs");
     }
-    // const navigate = useNavigate();
-    // console.log("Success:", values);
-    // navigate(ROUTES.home);
   };
   const handleOnChange = (e: any) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
@@ -35,8 +35,10 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
   useEffect(() => {
     if (isSuccess) {
       toast.success("success");
-      localStorage.setItem("userToken", JSON.stringify(data?.token));
-      navegate("/customers");
+      // TODO
+      dispatch(setUser({ token: data?.token, name: data?.user.name }));
+      // localStorage.setItem("userToken", JSON.stringify(data?.token));
+      navegate("/");
     }
   }, [isSuccess]);
 
