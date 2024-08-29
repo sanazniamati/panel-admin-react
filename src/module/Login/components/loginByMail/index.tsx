@@ -1,7 +1,7 @@
 /** @format */
 
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, FormProps, Input } from "antd";
+import { App, Button, Checkbox, Form, FormProps, Input } from "antd";
 import { FieldType } from "../../types/loginFieldType";
 import { useLoginUserMutation } from "../../../../services/authApi";
 import { toast } from "react-toastify";
@@ -12,17 +12,24 @@ import { setUser } from "../../../../featchers/authSlice";
 
 const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
   const navegate = useNavigate();
+  const { message } = App.useApp();
+
   const { email, password, mobile, captcha, remember } = formValue;
   const [trigger, { data, isError, isSuccess, error }] = useLoginUserMutation();
 
   const dispatch = useAppDispatch();
 
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
-    if (email && password) {
-      await trigger({ email: email, password: password });
-    } else {
-      toast.error("Please fill all inputs");
-    }
+    // if (email && password) {
+    //   await trigger({ email: email, password: password });
+    // } else {
+    //   toast.error("Please fill all inputs");
+    // }
+    await trigger({ email: email, password: password }).then(({ data }) => {
+      if (data) {
+        message.success("Login successful");
+      }
+    });
   };
   const handleOnChange = (e: any) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
