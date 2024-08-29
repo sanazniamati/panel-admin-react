@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { setUser } from "../../../../featchers/authSlice";
+import { ROUTES } from "../../../../routes/routesUrls";
 
 const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
   const navegate = useNavigate();
@@ -41,11 +42,11 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("success");
+      // toast.success("success");
       // TODO
       dispatch(setUser({ token: data?.token, name: data?.user.name }));
       // localStorage.setItem("userToken", JSON.stringify(data?.token));
-      navegate("/");
+      navegate(ROUTES.home);
     }
   }, [isSuccess]);
 

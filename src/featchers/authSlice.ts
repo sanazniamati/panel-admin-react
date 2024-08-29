@@ -2,6 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
+import { USER_TOKEN } from "../constants/localStorageKeys";
 
 interface AuthState {
   name: string | undefined;
@@ -19,7 +20,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<{ name: string | undefined; token: string | undefined }>) => {
-      localStorage.setItem("userToken", JSON.stringify({ name: action.payload.name, token: action.payload.token }));
+      localStorage.setItem(USER_TOKEN, JSON.stringify({ name: action.payload.name, token: action.payload.token }));
       (state.name = action.payload.name), (state.token = action.payload.token);
       console.log("state.name :", action.payload.name);
       console.log("state.token:", action.payload.token);
@@ -27,7 +28,8 @@ const authSlice = createSlice({
   },
 });
 
-export const selectAuthName = (state: RootState) => state.auth.name;
+// TODO
+export const selectAuthName = (str: RootState) => str.auth.name;
 
 // Export actions
 export const { setUser } = authSlice.actions;

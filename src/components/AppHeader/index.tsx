@@ -10,8 +10,9 @@ import {
 import { Badge, Button, Dropdown, Flex, Layout, MenuProps, Space, theme } from "antd";
 import Avatar from "../../assets/img/avatar.jfif";
 import { selectAuthName } from "../../featchers/authSlice";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
+import { useEffect } from "react";
 
 const { Header } = Layout;
 
