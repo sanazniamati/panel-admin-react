@@ -53,8 +53,8 @@ export const privateRoute: RouteObject[] = [
       { path: ROUTES.design, element: <DesignSystem /> },
     ],
   },
-  //   {
-  //     path: "*",
-  //     element: <Navigate to={ROUTES.home} />,
-  //   },
+  {
+    path: "*",
+    element: <Navigate to={ROUTES.home} />,
+  },
 ];
