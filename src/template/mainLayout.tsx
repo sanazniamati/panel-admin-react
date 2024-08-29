@@ -5,11 +5,22 @@ import { Layout } from "antd";
 
 export const MainLayout: FC = () => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <Layout>
-      <SideMenu collapsed={collapsed} />
-      <PageContent collapsed={collapsed} setCollapsed={setCollapsed} />
+      <SideMenu
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+      />
+      <PageContent
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+      />
     </Layout>
   );
 };

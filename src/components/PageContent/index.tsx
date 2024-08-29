@@ -9,16 +9,28 @@ import { Dispatch, SetStateAction } from "react";
 interface PageContentPropsInterface {
   collapsed: boolean;
   setCollapsed: Dispatch<SetStateAction<boolean>>;
+  openDrawer: boolean;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
 }
 const { Content } = Layout;
 
-const PageContent: React.FC<PageContentPropsInterface> = ({ collapsed, setCollapsed }) => {
+const PageContent: React.FC<PageContentPropsInterface> = ({
+  collapsed,
+  setCollapsed,
+  openDrawer,
+  setOpenDrawer,
+}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
     <Layout>
-      <AppHeader collapsed={collapsed} setCollapsed={setCollapsed} />
+      <AppHeader
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+      />
       <Content
         style={{
           paddingLeft: 32,

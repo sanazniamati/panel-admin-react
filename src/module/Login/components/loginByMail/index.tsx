@@ -11,12 +11,18 @@ import { useAppDispatch } from "../../../../app/hooks";
 import { setUser } from "../../../../featchers/authSlice";
 import { ROUTES } from "../../../../routes/routesUrls";
 
-const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
+const LoginByMail = ({
+  onFinishFailed,
+  autoLogin,
+  changeAutoLogin,
+  formValue,
+  setFormValue,
+}: any) => {
   const navegate = useNavigate();
   const { message } = App.useApp();
 
   const { email, password, mobile, captcha, remember } = formValue;
-  const [trigger, { data, isError, isSuccess, error }] = useLoginUserMutation();
+  const [trigger] = useLoginUserMutation();
 
   const dispatch = useAppDispatch();
 
@@ -26,9 +32,13 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
     // } else {
     //   toast.error("Please fill all inputs");
     // }
-    await trigger({ email: email, password: password }).then(({ data }) => {
-      if (data) {
+    await trigger({ email: email, password: password }).then((result) => {
+      if (result.data) {
         message.success("Login successful");
+        dispatch(
+          setUser({ token: result.data?.token, name: result.data?.user.name })
+        );
+        navegate(ROUTES.home);
       }
     });
   };
@@ -40,23 +50,30 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
     // console.log(sanaz)
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      // toast.success("success");
-      // TODO
-      dispatch(setUser({ token: data?.token, name: data?.user.name }));
-      // localStorage.setItem("userToken", JSON.stringify(data?.token));
-      navegate(ROUTES.home);
-    }
-  }, [isSuccess]);
-
   return (
     <>
-      <Form name="login" onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
-        <Form.Item<FieldType> name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
-          <Input name="email" value={email} onChange={handleOnChange} prefix={<UserOutlined />} placeholder="Email" />
+      <Form
+        name="login"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item<FieldType>
+          name="email"
+          rules={[{ required: true, message: "Please input your Email!" }]}
+        >
+          <Input
+            name="email"
+            value={email}
+            onChange={handleOnChange}
+            prefix={<UserOutlined />}
+            placeholder="Email"
+          />
         </Form.Item>
-        <Form.Item<FieldType> name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
+        <Form.Item<FieldType>
+          name="password"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
           <Input.Password
             name="password"
             value={password}
@@ -74,7 +91,12 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
           </a>
         </Form.Item> */}
         <Form.Item>
-          <Button type="primary" htmlType="submit" block onClick={handleLoginByMail}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            onClick={handleLoginByMail}
+          >
             Login
           </Button>
         </Form.Item>

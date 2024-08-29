@@ -19,8 +19,20 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<{ name: string | undefined; token: string | undefined }>) => {
-      localStorage.setItem(USER_TOKEN, JSON.stringify({ name: action.payload.name, token: action.payload.token }));
+    setUser: (
+      state,
+      action: PayloadAction<{
+        name: string | undefined;
+        token: string | undefined;
+      }>
+    ) => {
+      localStorage.setItem(
+        USER_TOKEN,
+        JSON.stringify({
+          name: action.payload.name,
+          token: action.payload.token,
+        })
+      );
       (state.name = action.payload.name), (state.token = action.payload.token);
       console.log("state.name :", action.payload.name);
       console.log("state.token:", action.payload.token);
@@ -30,6 +42,7 @@ const authSlice = createSlice({
 
 // TODO
 export const selectAuthName = (str: RootState) => str.auth.name;
+export const tokenSelector = (str: RootState) => str.auth.token;
 
 // Export actions
 export const { setUser } = authSlice.actions;

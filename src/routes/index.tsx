@@ -1,16 +1,20 @@
 /** @format */
 
-import { FC, useEffect, useMemo, useState } from "react";
-import { RouteObject, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { FC, useEffect, useMemo, useReducer, useState } from "react";
+import {
+  RouteObject,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import { privateRoute } from "./privateRoute";
 import { Flex } from "antd";
 import { publicRoute } from "./publicRoutes";
-import { USER_TOKEN } from "../constants/localStorageKeys";
+import { useAppSelector } from "../app/hooks";
+import { tokenSelector } from "../featchers/authSlice";
 
 export const Routes: FC = () => {
   const [currentRoute, setCurrentRoute] = useState<RouteObject[]>();
-  const userToken = localStorage.getItem(USER_TOKEN);
-
+  const userToken = useAppSelector(tokenSelector);
   useEffect(() => {
     setCurrentRoute(userToken ? privateRoute : publicRoute);
   }, [userToken]);

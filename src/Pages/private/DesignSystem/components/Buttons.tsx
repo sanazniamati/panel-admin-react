@@ -3,116 +3,156 @@
 import { Button, Col, Row } from "antd";
 
 const Buttons: React.FC = () => {
+  const span = {
+    xs: 12,
+    sm: 8,
+    md: 6,
+  };
   return (
     <>
-      <Row style={{ marginBottom: 10 }}>
-        <Col span={6} className="">
+      <Row gutter={[24, 24]}>
+        <Col {...span} className="">
           <Button type="primary">Primary Button</Button>
         </Col>
-        <Col span={6} className="">
+        <Col {...span} className="">
           <Button type="primary" danger>
             Danger Button
           </Button>
         </Col>
-        <Col span={6} className="">
-          <Button type="primary" style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}>
+        <Col {...span} className="">
+          <Button
+            type="primary"
+            style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}
+          >
             Warning Button
           </Button>
         </Col>
-        <Col span={6} className="">
-          <Button type="primary" style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}>
+        <Col {...span} className="">
+          <Button
+            type="primary"
+            style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}
+          >
             Success Button
           </Button>
         </Col>
-      </Row>
-      <Row style={{ marginBottom: 10 }}>
-        <Col span={6} className="">
+        <Col {...span} className="">
           <Button type="primary" ghost>
             Primary Button
           </Button>
         </Col>
-        <Col span={6} className="">
+        <Col {...span} className="">
           <Button type="primary" ghost danger>
             Danger Button
           </Button>
         </Col>
-        <Col span={6} className="">
-          <Button type="primary" ghost style={{ color: "#faad14", borderColor: "#faad14" }}>
+        <Col {...span} className="">
+          <Button
+            type="primary"
+            ghost
+            style={{ color: "#faad14", borderColor: "#faad14" }}
+          >
             Warning Button
           </Button>
         </Col>
-        <Col span={6} className="">
-          <Button type="primary" ghost style={{ color: "#52c41a", borderColor: "#52c41a" }}>
+        <Col {...span} className="">
+          <Button
+            type="primary"
+            ghost
+            style={{ color: "#52c41a", borderColor: "#52c41a" }}
+          >
             Success Button
           </Button>
         </Col>
-      </Row>
-      <Row style={{ marginBottom: 10 }}>
-        <Col span={6} className="">
+        <Col {...span} className="">
           <Button type="primary" disabled>
             Primary Button
           </Button>
         </Col>
-        <Col span={6}>
+        <Col {...span}>
           <Button type="primary" danger disabled>
             Danger Button
           </Button>
         </Col>
-        <Col span={6}>
+        <Col {...span}>
           <Button type="primary" disabled>
             Warning Button
           </Button>
         </Col>
-        <Col span={6}>
+        <Col {...span}>
           <Button type="primary" disabled>
             Success Button
           </Button>
         </Col>
-      </Row>
-      <Row style={{ marginBottom: 10 }}>
-        <Col span={6}>
+        <Col {...span}>
           <Button size="middle" type="primary">
             Primary Button
           </Button>
         </Col>
-        <Col span={6}>
+        <Col {...span}>
           <Button size="middle" type="primary" danger>
             Danger Button
           </Button>
         </Col>
-        <Col span={6}>
-          <Button size="middle" type="primary" style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}>
+        <Col {...span}>
+          <Button
+            size="middle"
+            type="primary"
+            style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}
+          >
             Warning Button
           </Button>
         </Col>
-        <Col span={6}>
-          <Button size="middle" type="primary" style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}>
+        <Col {...span}>
+          <Button
+            size="middle"
+            type="primary"
+            style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}
+          >
             Success Button
           </Button>
         </Col>
-      </Row>
-      <Row style={{ marginBottom: 10 }}>
-        <Col span={6}>
+
+        <Col {...span}>
           <Button size="large" type="primary">
             Primary Button
           </Button>
         </Col>
-        <Col span={6}>
+        <Col {...span}>
           <Button size="large" type="primary" danger>
             Danger Button
           </Button>
         </Col>
-        <Col span={6}>
-          <Button size="large" type="primary" style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}>
+        <Col {...span}>
+          <Button
+            size="large"
+            type="primary"
+            style={{ backgroundColor: "#faad14", borderColor: "#faad14" }}
+          >
             Warning Button
           </Button>
         </Col>
-        <Col span={6}>
-          <Button size="large" type="primary" style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}>
+        <Col {...span}>
+          <Button
+            size="large"
+            type="primary"
+            style={{ backgroundColor: "#52c41a", borderColor: "#52c41a" }}
+          >
             Success Button
           </Button>
         </Col>
       </Row>
+      {/* <Row gutter={[24, 24]}>
+      
+       
+        
+      </Row>
+      <Row gutter={[24, 24]}>
+        
+      </Row>
+      <Row gutter={[24, 24]}>
+       
+      </Row>
+      <Row gutter={[24, 24]}></Row> */}
       {/* <div>
       <Row gutter={[16, 16]}>
         <Col span={12}>
