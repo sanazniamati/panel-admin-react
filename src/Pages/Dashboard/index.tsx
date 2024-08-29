@@ -1,7 +1,7 @@
 /** @format */
 
 import { useAppSelector } from "../../app/hooks";
-import { selectAuth } from "../../featchers/authSlice";
+// import { selectAuthName } from "../../featchers/authSlice";
 
 const Dashboard: React.FC = () => {
   // const { name } = useAppSelector(selectAuth);

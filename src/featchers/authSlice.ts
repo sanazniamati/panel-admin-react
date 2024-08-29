@@ -27,7 +27,7 @@ const authSlice = createSlice({
   },
 });
 
-export const selectAuth = (state: RootState) => state.authApi;
+// export const selectAuthName = (state: RootState) => state.auth.name;
 
 // Export actions
 export const { setUser } = authSlice.actions;
