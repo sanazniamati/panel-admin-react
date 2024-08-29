@@ -2,13 +2,13 @@
 
 import { RouteObject, Navigate } from "react-router-dom";
 import { ROUTES } from "./routesUrls";
-import Dashboard from "../Pages/Dashboard";
-import Customers from "../Pages/Customers";
-import Analytics from "../Pages/Analytics";
-import Help from "../Pages/Help";
-import Messages from "../Pages/Messages";
-import NewCustomer from "../Pages/NewCustomer";
-import Setting from "../Pages/Setting";
+import Dashboard from "../Pages/private/Dashboard";
+import Customers from "../Pages/private/Customer";
+import Analytics from "../Pages/private/Analytics";
+import Help from "../Pages/private/Help";
+import Messages from "../Pages/private/Messages";
+import NewCustomer from "../Pages/private/NewCustomer";
+import Setting from "../Pages/private/Setting";
 import { MainLayout } from "../template/mainLayout";
 import { replace } from "lodash";
 export const privateRoute: RouteObject[] = [

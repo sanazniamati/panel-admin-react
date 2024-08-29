@@ -1,12 +1,12 @@
 /** @format */
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../../Pages/Dashboard";
+import Dashboard from "../../Pages/private/Dashboard";
 import Customers from "../../Pages/Customers";
-import Analytics from "../../Pages/Analytics";
-import Messages from "../../Pages/Messages";
-import Setting from "../../Pages/Setting";
-import Help from "../../Pages/Help";
-import NewCustomer from "../../Pages/NewCustomer";
+import Analytics from "../../Pages/private/Analytics";
+import Messages from "../../Pages/private/Messages";
+import Setting from "../../Pages/private/Setting";
+import Help from "../../Pages/private/Help";
+import NewCustomer from "../../Pages/private/NewCustomer";
 
 function AppRoutes() {
   return (

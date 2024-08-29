@@ -1,11 +1,9 @@
 /** @format */
 
-import { Breadcrumb, Button, Flex, Input, Space } from "antd";
-import CustomersTable from "../../components/CustomerTable";
+import { Breadcrumb, Button, Flex, Input } from "antd";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
-
-import CustomersTableCopy from "../../components/CustomerTableCopy/index";
 import { useNavigate } from "react-router-dom";
+import CustomersTable from "./components/customerTable";
 
 const Customers: React.FC = () => {
   const navigate = useNavigate();
@@ -41,7 +39,6 @@ const Customers: React.FC = () => {
       </Flex>
       {/* table */}
       <CustomersTable />
-      {/* <CustomersTableCopy /> */}
     </div>
   );
 };

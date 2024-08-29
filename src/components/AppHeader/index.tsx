@@ -9,6 +9,9 @@ import {
 } from "@ant-design/icons";
 import { Badge, Button, Dropdown, Flex, Layout, MenuProps, Space, theme } from "antd";
 import Avatar from "../../assets/img/avatar.jfif";
+import { selectAuthName } from "../../featchers/authSlice";
+import { useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
 
 const { Header } = Layout;
 
@@ -38,6 +41,10 @@ const AppHeader: React.FC<AppHeaderPropsInterface> = ({ collapsed, setCollapsed 
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  // TODO
+  const name = useAppSelector(selectAuthName);
+  console.log("name :", name);
 
   return (
     <Header
@@ -126,7 +133,7 @@ const AppHeader: React.FC<AppHeaderPropsInterface> = ({ collapsed, setCollapsed 
           <Dropdown menu={{ items }}>
             <a onClick={(e) => e.preventDefault()}>
               <Space>
-                Sanaz Niamati
+                {name}
                 <DownOutlined />
               </Space>
             </a>
