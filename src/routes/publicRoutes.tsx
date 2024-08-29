@@ -1,6 +1,6 @@
 /** @format */
 
-import { Outlet, RouteObject } from "react-router-dom";
+import { Navigate, Outlet, RouteObject } from "react-router-dom";
 import { ROUTES } from "./routesUrls";
 import Login from "../module/Login";
 import LoginLayout from "../template/loginLayout";
@@ -16,8 +16,8 @@ export const publicRoute: RouteObject[] = [
       },
     ],
   },
-  //   {
-  //     path: "*",
-  //     element: <Navigate to={ROUTES.login} />,
-  //   },
+  {
+    path: "*",
+    element: <Navigate to={ROUTES.login} />,
+  },
 ];
