@@ -1,6 +1,5 @@
 /** @format */
 
-import { ConfigProvider, ThemeConfig } from "antd";
 import { useEffect } from "react";
 import "./App.css";
 import { Routes } from "./routes";
@@ -8,36 +7,29 @@ import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./app/store";
 import { ToastContainer, toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { selectAuth, setUser } from "./featchers/authSlice";
+import { setUser } from "./featchers/authSlice";
+import { ConfigProviders } from "./components/ConfigProviders";
 
 function App() {
-  // const { name } = useAppSelector(selectAuth);
+  // const { name } = useAppSelector(selectAuthName);
+  // const dispatch = useAppDispatch();
 
-  const user = JSON.parse(localStorage.getItem("userToken") || "{}");
+  // const user = JSON.parse(localStorage.getItem("userToken") || "{}");
 
-  const themConfig: ThemeConfig = {
-    components: {
-      Button: {},
-      Table: {
-        headerBg: "transparent",
-      },
-    },
-  };
-
+  // TODO
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userToken") || "{}");
     console.log("user :", user);
-    // const dispatch = useAppDispatch();
     // dispatch(setUser(user));
   }, []);
 
   return (
     <ReduxProvider store={store}>
-      <ConfigProvider theme={themConfig}>
+      <ConfigProviders>
         <ToastContainer />
-        {name}
+
         <Routes />
-      </ConfigProvider>
+      </ConfigProviders>
     </ReduxProvider>
   );
 }
