@@ -79,6 +79,11 @@ const SideMenu: React.FC<SideMenuPropsInterface> = ({ collapsed }) => {
               icon: <QuestionCircleOutlined />,
               label: "HELP CENTER",
             },
+            {
+              key: "/design",
+
+              label: "Design System",
+            },
           ]}
         />
       </>

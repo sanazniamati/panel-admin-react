@@ -11,6 +11,7 @@ import NewCustomer from "../Pages/private/NewCustomer";
 import Setting from "../Pages/private/Setting";
 import { MainLayout } from "../template/mainLayout";
 import { replace } from "lodash";
+import DesignSystem from "../Pages/private/DesignSystem";
 export const privateRoute: RouteObject[] = [
   {
     path: ROUTES.home,
@@ -49,6 +50,7 @@ export const privateRoute: RouteObject[] = [
         path: ROUTES.setting,
         element: <Setting />,
       },
+      { path: ROUTES.design, element: <DesignSystem /> },
     ],
   },
   //   {

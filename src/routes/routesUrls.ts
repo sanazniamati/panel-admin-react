@@ -1,3 +1,5 @@
+/** @format */
+
 export enum ROUTES {
   home = "/",
   customers = "/customers",
@@ -7,4 +9,5 @@ export enum ROUTES {
   help = "/help",
   newCustomer = "/customers/newCustomer",
   login = "/login",
+  design = "/design",
 }
