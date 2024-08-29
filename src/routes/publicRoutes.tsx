@@ -1,15 +1,14 @@
+/** @format */
+
 import { Outlet, RouteObject } from "react-router-dom";
 import { ROUTES } from "./routesUrls";
 import Login from "../module/Login";
+import LoginLayout from "../template/loginLayout";
 
 export const publicRoute: RouteObject[] = [
   {
-    path: ROUTES.home,
-    element: (
-      <div>
-        <Outlet />
-      </div>
-    ),
+    path: ROUTES.login,
+    element: <LoginLayout />,
     children: [
       {
         path: ROUTES.login,

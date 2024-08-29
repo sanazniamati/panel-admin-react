@@ -1,20 +1,26 @@
 /** @format */
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { RouteObject, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { privateRoute } from "./privateRoute";
 import { Flex } from "antd";
 import { publicRoute } from "./publicRoutes";
+import { USER_TOKEN } from "../constants/localStorageKeys";
 
 export const Routes: FC = () => {
-  const [currentRoute, setCurrentRoute] = useState<RouteObject[]>([]);
+  const [currentRoute, setCurrentRoute] = useState<RouteObject[]>();
+  const userToken = localStorage.getItem(USER_TOKEN);
 
   useEffect(() => {
-    const userToken = localStorage.getItem("userToken");
     setCurrentRoute(userToken ? privateRoute : publicRoute);
-  }, []);
+  }, [userToken]);
 
-  if (!currentRoute.length) {
+  // TODO
+  const routes = useMemo(() => {
+    return currentRoute && createBrowserRouter(currentRoute);
+  }, [currentRoute]);
+
+  if (!routes) {
     return (
       <Flex
         justify="center"
@@ -28,7 +34,5 @@ export const Routes: FC = () => {
       </Flex>
     );
   }
-  const routes = createBrowserRouter(currentRoute);
-
   return <RouterProvider router={routes} />;
 };
