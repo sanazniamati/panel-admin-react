@@ -1,4 +1,4 @@
-import { OverrideToken } from "antd/es/theme/interface";
+/** @format */
 
 export const useOverride = () => {
   const lightThemeComponents = {
