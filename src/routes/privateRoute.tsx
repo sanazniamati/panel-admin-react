@@ -9,7 +9,7 @@ import Help from "../Pages/private/Help";
 import Messages from "../Pages/private/Messages";
 import NewCustomer from "../Pages/private/NewCustomer";
 import Setting from "../Pages/private/Setting";
-import { MainLayout } from "../template/mainLayout";
+import { MainLayout } from "../template/mainLayout/index";
 import { replace } from "lodash";
 import DesignSystem from "../Pages/private/DesignSystem";
 export const privateRoute: RouteObject[] = [

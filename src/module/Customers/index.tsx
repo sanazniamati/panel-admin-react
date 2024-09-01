@@ -1,9 +1,10 @@
 /** @format */
 
-import { Breadcrumb, Button, Flex, Input } from "antd";
+import { Breadcrumb, Button, Flex, Input, Typography } from "antd";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import CustomersTable from "./components/customerTable";
+const { Title } = Typography;
 
 const Customers: React.FC = () => {
   const navigate = useNavigate();
@@ -11,8 +12,8 @@ const Customers: React.FC = () => {
     navigate("/customer/newCustomer");
   };
   return (
-    <div>
-      Customers' List
+    <Flex vertical>
+      <Title level={3}>Customers' List</Title>
       <Breadcrumb
         items={[
           {
@@ -37,9 +38,10 @@ const Customers: React.FC = () => {
         </Button>
         <Input style={{ width: "30%" }} size="large" placeholder="search" prefix={<SearchOutlined />} />
       </Flex>
+
       {/* table */}
       <CustomersTable />
-    </div>
+    </Flex>
   );
 };
 export default Customers;

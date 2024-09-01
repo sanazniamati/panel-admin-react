@@ -1,11 +1,7 @@
 /** @format */
 
 import { FC, useEffect, useMemo, useReducer, useState } from "react";
-import {
-  RouteObject,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouteObject, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { privateRoute } from "./privateRoute";
 import { Flex } from "antd";
 import { publicRoute } from "./publicRoutes";
@@ -15,8 +11,10 @@ import { tokenSelector } from "../featchers/authSlice";
 export const Routes: FC = () => {
   const [currentRoute, setCurrentRoute] = useState<RouteObject[]>();
   const userToken = useAppSelector(tokenSelector);
+
   useEffect(() => {
-    setCurrentRoute(userToken ? privateRoute : publicRoute);
+    // setCurrentRoute(userToken ? privateRoute : publicRoute);
+    setCurrentRoute(privateRoute);
   }, [userToken]);
 
   // TODO
