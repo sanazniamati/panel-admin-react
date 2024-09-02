@@ -40,7 +40,6 @@ const authSlice = createSlice({
   },
 });
 
-// TODO
 export const selectAuthName = (str: RootState) => str.auth.name;
 export const tokenSelector = (str: RootState) => str.auth.token;
 
