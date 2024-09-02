@@ -128,13 +128,10 @@ const CustomersTable: React.FC = () => {
         },
       }))
     : [];
+
   return (
     <Table
-      style={{
-        padding: 16,
-        marginTop: 16,
-        // background: "lightGreen",
-      }}
+      className=" p-4 mt-4"
       columns={newColumns}
       dataSource={dataSource}
       pagination={{

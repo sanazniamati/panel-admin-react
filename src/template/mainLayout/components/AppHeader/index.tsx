@@ -6,6 +6,7 @@ import { selectAuthName } from "../../../../featchers/authSlice";
 import { useAppSelector } from "../../../../app/hooks";
 import { Dispatch, SetStateAction } from "react";
 import { useMediaQuery } from "../../../../hooks/mediaQuery";
+import { useMainLayoutContext } from "../../contex";
 
 const { Header } = Layout;
 
@@ -26,12 +27,10 @@ const items: MenuProps["items"] = [
   },
 ];
 
-interface AppHeaderPropsInterface {
-  openDrawer: boolean;
-  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
-}
+const AppHeader: React.FC = () => {
+  const { dispatch } = useMainLayoutContext();
 
-const AppHeader: React.FC<AppHeaderPropsInterface> = ({ setOpenDrawer }) => {
+  const { setOpenDrawer } = dispatch;
   const {
     token: { colorBgContainer },
   } = theme.useToken();
