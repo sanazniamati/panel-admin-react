@@ -12,6 +12,9 @@ import Setting from "../Pages/private/Setting";
 import { MainLayout } from "../template/mainLayout/index";
 import { replace } from "lodash";
 import DesignSystem from "../Pages/private/DesignSystem";
+import NewCustomerByFile from "../module/NewCustomerByFIle";
+import EditCustomer from "../module/EditCustomer";
+import DetailCustomer from "../module/DetailCustomer";
 export const privateRoute: RouteObject[] = [
   {
     path: ROUTES.home,
@@ -30,6 +33,23 @@ export const privateRoute: RouteObject[] = [
         path: ROUTES.customers,
         element: <Customers />,
       },
+      // route NewCustomerChild :newCustomerByFile,newCustomerManully,editCustomer,detailCustomer
+      {
+        path: ROUTES.newCustomerManully,
+        element: <NewCustomer />,
+      },
+      {
+        path: ROUTES.newCustomerByFile,
+        element: <NewCustomerByFile />,
+      },
+      {
+        path: ROUTES.editCustomer,
+        element: <EditCustomer />,
+      },
+      {
+        path: ROUTES.detailCustomer,
+        element: <DetailCustomer />,
+      },
       {
         path: ROUTES.analytics,
         element: <Analytics />,
@@ -41,10 +61,6 @@ export const privateRoute: RouteObject[] = [
       {
         path: ROUTES.messages,
         element: <Messages />,
-      },
-      {
-        path: ROUTES.newCustomer,
-        element: <NewCustomer />,
       },
       {
         path: ROUTES.setting,

@@ -1,24 +1,18 @@
 /** @format */
 
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Flex } from "antd";
+import NewCustomerManully from "../../../module/NewCustomerManualy";
+import NewCustomerLayout from "./newCustomerLayout";
+import NewCustomerByFile from "../../../module/NewCustomerByFIle";
 
-const NewCustomer: React.FC = () => {
+const NewCustomerPage: React.FC = () => {
   return (
-    <div style={{ background: "lightGray", height: "100vh" }}>
-      <Breadcrumb
-        items={[
-          {
-            title: "Dashboard",
-          },
-          {
-            title: "Customers'List",
-          },
-          {
-            title: <a href="">New Customers</a>,
-          },
-        ]}
-      />
-    </div>
+    <Flex vertical className="bg-yellow-200 py-4">
+      <NewCustomerLayout>
+        <NewCustomerManully />
+        <NewCustomerByFile />
+      </NewCustomerLayout>
+    </Flex>
   );
 };
-export default NewCustomer;
+export default NewCustomerPage;

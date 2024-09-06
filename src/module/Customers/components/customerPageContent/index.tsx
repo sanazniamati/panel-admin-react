@@ -3,14 +3,14 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Flex, Input } from "antd";
 import CustomersTable from "../customerTable";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import AddCustomerButton from "../AddCustomerButton";
 
 const CustomerPageContent: React.FC = () => {
-  const navigate = useNavigate();
-  const handleNewCustomer = () => {
-    navigate("/customer/newCustomer");
-  };
+  // const navigate = useNavigate();
+  // const handleNewCustomer = () => {
+  //   navigate("/customer/newCustomer");
+  // };
   return (
     <Flex vertical>
       {/* button &serch */}

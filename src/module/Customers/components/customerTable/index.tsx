@@ -2,11 +2,12 @@
 
 import React from "react";
 import type { TableColumnsType } from "antd";
-import { Badge, Flex, Space } from "antd";
+import { Badge, Button, Flex, Space } from "antd";
 import { DeleteOutlined, EditOutlined, ExportOutlined } from "@ant-design/icons";
 import Table from "antd/es/table";
 import { omit } from "lodash";
 import ITableItems from "./tableItems";
+import { Link } from "react-router-dom";
 
 const dataSource: ITableItems[] = [];
 for (let i = 0; i < 100; i++) {
@@ -26,7 +27,7 @@ const CustomersTable: React.FC = () => {
       dataIndex: "key",
       rowScope: "row",
       width: 40,
-      fixed: "left",
+      // fixed: "left",
     },
     {
       title: "Full Name",
@@ -79,7 +80,9 @@ const CustomersTable: React.FC = () => {
                 borderRadius: 8,
               }}
             >
-              <ExportOutlined />
+              <Link to="/customer/detailCustomer">
+                <ExportOutlined />
+              </Link>
             </Space>
             <Space
               style={{
@@ -92,7 +95,12 @@ const CustomersTable: React.FC = () => {
                 borderRadius: 8,
               }}
             >
-              <EditOutlined />
+              <Link to="/customer/detailCustomer">
+                <EditOutlined />
+              </Link>
+              {/* <Link to="customers/editCustomer">
+                <EditOutlined />
+              </Link> */}
             </Space>
             <Space
               style={{
