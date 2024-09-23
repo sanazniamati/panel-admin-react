@@ -1,17 +1,16 @@
 /** @format */
 
-import { Breadcrumb, Flex, Typography } from "antd";
+import { Flex, Typography } from "antd";
 import { breadCrumbItems } from "./breadCrumbItems";
-import DynamicBreadcrumbs from "./DynamicBreadcrumbs";
+import BreadCrum from "../../../../models/breadcrum/breadcrum";
 
 const { Title } = Typography;
 
 const CustmerPageTitle: React.FC = () => {
   return (
     <Flex vertical className=" bg-green-300">
-      <Title level={3}>Customers' List</Title>
-      <Breadcrumb items={breadCrumbItems} />
-      {/* <DynamicBreadcrumbs /> */}
+      <Title level={1}>Customer's List</Title>
+      <BreadCrum members={breadCrumbItems} />
     </Flex>
   );
 };
