@@ -3,21 +3,15 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { App, Button, Checkbox, Form, FormProps, Input } from "antd";
 import { FieldType } from "../../types/loginFieldType";
-import { useLoginUserMutation } from "../../../../services/authApi";
+import { useLoginUserMutation } from "../../../../services/authApi/authApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
-import { setUser } from "../../../../featchers/authSlice";
+import { setUser } from "../../../../featchers/auth/authSlice";
 import { ROUTES } from "../../../../routes/routesUrls";
 
-const LoginByMail = ({
-  onFinishFailed,
-  autoLogin,
-  changeAutoLogin,
-  formValue,
-  setFormValue,
-}: any) => {
+const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
   const navegate = useNavigate();
   const { message } = App.useApp();
 
@@ -35,9 +29,7 @@ const LoginByMail = ({
     await trigger({ email: email, password: password }).then((result) => {
       if (result.data) {
         message.success("Login successful");
-        dispatch(
-          setUser({ token: result.data?.token, name: result.data?.user.name })
-        );
+        dispatch(setUser({ token: result.data?.token, name: result.data?.user.name }));
         navegate(ROUTES.home);
       }
     });
@@ -52,28 +44,11 @@ const LoginByMail = ({
 
   return (
     <>
-      <Form
-        name="login"
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item<FieldType>
-          name="email"
-          rules={[{ required: true, message: "Please input your Email!" }]}
-        >
-          <Input
-            name="email"
-            value={email}
-            onChange={handleOnChange}
-            prefix={<UserOutlined />}
-            placeholder="Email"
-          />
+      <Form name="login" onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
+        <Form.Item<FieldType> name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
+          <Input name="email" value={email} onChange={handleOnChange} prefix={<UserOutlined />} placeholder="Email" />
         </Form.Item>
-        <Form.Item<FieldType>
-          name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
+        <Form.Item<FieldType> name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
           <Input.Password
             name="password"
             value={password}
@@ -91,12 +66,7 @@ const LoginByMail = ({
           </a>
         </Form.Item> */}
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            block
-            onClick={handleLoginByMail}
-          >
+          <Button type="primary" htmlType="submit" block onClick={handleLoginByMail}>
             Login
           </Button>
         </Form.Item>
