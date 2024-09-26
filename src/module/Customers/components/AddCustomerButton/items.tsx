@@ -10,7 +10,7 @@ const items = [
   },
   {
     key: "2",
-    label: <Link to={ROUTES.newCustomerManully}>Entering manually</Link>,
+    label: <Link to={ROUTES.newCustomer}>Entering manually</Link>,
   },
 ];
 
