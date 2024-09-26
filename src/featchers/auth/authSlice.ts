@@ -1,8 +1,8 @@
 /** @format */
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
-import { USER_TOKEN } from "../constants/localStorageKeys";
+import { RootState } from "../../app/store";
+import { USER_TOKEN } from "../../constants/localStorageKeys";
 
 interface AuthState {
   name: string | undefined;
