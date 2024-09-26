@@ -2,7 +2,7 @@
 import { BellOutlined, DownOutlined, MailOutlined, MenuOutlined } from "@ant-design/icons";
 import { Badge, Dropdown, Flex, Layout, MenuProps, Space, theme } from "antd";
 import Avatar from "../../../../assets/img/avatar.jfif";
-import { selectAuthName } from "../../../../featchers/authSlice";
+import { selectAuthName } from "../../../../featchers/auth/authSlice";
 import { useAppSelector } from "../../../../app/hooks";
 import { Dispatch, SetStateAction } from "react";
 import { useMediaQuery } from "../../../../hooks/mediaQuery";

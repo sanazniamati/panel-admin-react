@@ -6,7 +6,7 @@ import { privateRoute } from "./privateRoute";
 import { Flex } from "antd";
 import { publicRoute } from "./publicRoutes";
 import { useAppSelector } from "../app/hooks";
-import { tokenSelector } from "../featchers/authSlice";
+import { tokenSelector } from "../featchers/auth/authSlice";
 
 export const Routes: FC = () => {
   const [currentRoute, setCurrentRoute] = useState<RouteObject[]>();
