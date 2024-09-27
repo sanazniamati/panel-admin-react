@@ -1,139 +1,87 @@
 /** @format */
 import { BellOutlined, DownOutlined, MailOutlined, MenuOutlined } from "@ant-design/icons";
-import { Badge, Dropdown, Flex, Layout, MenuProps, Space, theme } from "antd";
+import { Badge, Button, Dropdown, Flex, Image, Layout, MenuProps, Space, Typography } from "antd";
 import Avatar from "../../../../assets/img/avatar.jfif";
 import { selectAuthName } from "../../../../featchers/auth/authSlice";
 import { useAppSelector } from "../../../../app/hooks";
-import { Dispatch, SetStateAction } from "react";
 import { useMediaQuery } from "../../../../hooks/mediaQuery";
 import { useMainLayoutContext } from "../../contex";
+import { Link } from "react-router-dom";
+import { BreakPoints } from "../../../../constants/breakPointsNumber";
+import ChevronDown from "../../../../assets/img/chevronDown.png";
 
-const { Header } = Layout;
+const { Text } = Typography;
 
 const items: MenuProps["items"] = [
   {
     key: "1",
-    label: "sanaz",
+    label: <Link to="/">Account</Link>,
   },
+
   {
     key: "2",
-    label: "33 years old",
-    disabled: true,
-  },
-  {
-    key: "3",
-    label: "booshehr",
-    disabled: true,
+    danger: true,
+    label: "Logout",
   },
 ];
 
 const AppHeader: React.FC = () => {
+  const userName = useAppSelector(selectAuthName);
+  const isLaptop = useMediaQuery(BreakPoints.laptop); //greater than 991 is laptob size
   const { dispatch } = useMainLayoutContext();
-
-  const { setOpenDrawer } = dispatch;
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
-  // TODO
-  const name = useAppSelector(selectAuthName);
-  const isLaptop = useMediaQuery(991);
+  const { setOpenDrawer, setOpenNotificationDrawer, setOpenCommentsDrawer } = dispatch;
+  // const {
+  //   token: { colorBgContainer },
+  // } = theme.useToken();
 
   return (
-    <Header
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0px 32px 0px 32px",
-        background: colorBgContainer,
-      }}
-    >
-      <Flex justify="space-between" style={{ width: "100%" }}>
-        {!isLaptop && (
-          <MenuOutlined
-            onClick={() => {
-              setOpenDrawer(true);
-            }}
-          />
-        )}
-        <Flex
-          gap={12}
-          style={{
-            alignContent: "center",
-            background: "pink",
-            // alignItems: "center",
+    // <Header
+    //   style={{
+    //     display: "flex",
+    //     alignItems: "center",
+    //     justifyContent: "space-between",
+    //     padding: "0px 32px 0px 32px",
+    //     // background: colorBgContainer,
+    //   }}
+    // >
+    <Flex justify={!isLaptop ? "space-between" : "end"} className=" px-8 py-3 w-full">
+      {!isLaptop && (
+        <MenuOutlined
+          className=" cursor-pointer"
+          onClick={() => {
+            setOpenDrawer(true);
+          }}
+        />
+      )}
+      <Flex gap={12} align="center">
+        <Button
+          className=" h-10 w-10"
+          onClick={() => {
+            setOpenNotificationDrawer(true);
           }}
         >
-          <Flex
-            align="center"
-            justify="center"
-            style={{
-              border: 1,
-              borderStyle: "solid",
-              borderColor: "gray",
-              borderRadius: 8,
-              width: 40,
-              height: 40,
-            }}
-          >
-            <Badge dot>
-              <BellOutlined />
-            </Badge>
-          </Flex>
+          <Badge dot>
+            <BellOutlined />
+          </Badge>
+        </Button>
 
-          <Flex
-            align="center"
-            justify="center"
-            style={{
-              border: 1,
-              borderStyle: "solid",
-              borderColor: "gray",
-              borderRadius: 8,
-              width: 40,
-              height: 40,
-              display: "flex",
-            }}
-          >
-            <MailOutlined />
-          </Flex>
+        <Button className="h-10 w-10" onClick={() => setOpenCommentsDrawer(true)}>
+          <MailOutlined />
+        </Button>
 
-          <Flex
-            align="center"
-            justify="center"
-            style={{
-              height: 40,
-              border: 1,
-              borderStyle: "solid",
-              borderColor: "gray",
-              borderRadius: 8,
-              gap: 8,
-              padding: 8,
-            }}
-          >
-            <img
-              src={Avatar}
-              alt="Avatar"
-              style={{
-                width: 24,
-                height: 24,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            />
-            <Dropdown menu={{ items }}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>
-                  {name}
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-          </Flex>
+        <Flex align="center" justify="center" gap={8} className="border rounded-md bg-white h-10 px-2">
+          <Image src={Avatar} alt="Avatar" width={24} height={24} />
+          <Dropdown menu={{ items }}>
+            <Flex justify="center" gap={8} align="center">
+              <Text>{userName}</Text>
+              {/* <DownOutlined size={24} /> */}
+              <Image src={ChevronDown} height={24} width={24} />
+            </Flex>
+          </Dropdown>
         </Flex>
       </Flex>
-    </Header>
+    </Flex>
+    // </Header>
   );
 };
 

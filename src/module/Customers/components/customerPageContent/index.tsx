@@ -9,7 +9,7 @@ const CustomerPageContent: React.FC = () => {
   return (
     <Flex vertical>
       {/* button &serch */}
-      <Flex justify="space-between" align="center" className="mt-8 bg-green-500">
+      <Flex justify="space-between" align="center" className="mt-8">
         <AddCustomerButton />
         <Input style={{ width: "30%" }} size="large" placeholder="search" prefix={<SearchOutlined />} />
       </Flex>
