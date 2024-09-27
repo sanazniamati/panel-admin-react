@@ -1,15 +1,11 @@
 /** @format */
 
 import React from "react";
-import type { TableColumnsType } from "antd";
+import { Flex, type TableColumnsType } from "antd";
 import { TableColumns } from "./columns";
-
-import { Badge, Flex, Space } from "antd";
-import { DeleteOutlined, EditOutlined, ExportOutlined } from "@ant-design/icons";
 import Table from "antd/es/table";
 import { omit } from "lodash";
 import ITableItems from "./tableItems";
-import { Link } from "react-router-dom";
 import { useGetAllCustomersQuery } from "../../../../services/customerApi/customerApi";
 import { useCustomerContext } from "../../contex";
 
@@ -54,17 +50,19 @@ const CustomersTable: React.FC = () => {
     : [];
 
   return (
-    <Table
-      className=" p-4 mt-4"
-      rowKey={(record) => record.id}
-      columns={newColumns}
-      dataSource={TableDataSource}
-      pagination={{
-        pageSize: 10,
-        position: ["bottomLeft"],
-      }}
-      bordered
-    />
+    <Flex align="center" className="p-4 bg-white rounded-lg">
+      <Table
+        className="w-full"
+        rowKey={(record) => record.id}
+        columns={newColumns}
+        dataSource={TableDataSource}
+        pagination={{
+          pageSize: 10,
+          position: ["bottomLeft"],
+        }}
+        bordered
+      />
+    </Flex>
   );
 };
 
