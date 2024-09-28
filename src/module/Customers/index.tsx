@@ -9,7 +9,7 @@ import CustomerPageContent from "./components/customerPageContent";
 
 const Customers: React.FC = () => {
   return (
-    <Flex vertical>
+    <Flex vertical className="bg-blue-300">
       <CustmerPageTitle />
       <CustomerPageContent />
     </Flex>

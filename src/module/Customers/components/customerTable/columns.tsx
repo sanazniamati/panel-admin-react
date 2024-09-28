@@ -17,16 +17,6 @@ export const TableColumns = () => {
       width: 64,
       fixed: "left",
       className: "!text-center",
-
-      //   onCell: (record, rowIndex) => {
-      //     return {
-      //       onClick: () => {
-      //         console.log("cell clicked", record.fullname);
-      //         console.log("rowIndex ", rowIndex);
-      //       },
-      //       style: { backgroundColor: "#f00" },
-      //     };
-      //   },
     },
     {
       title: "Full Name",
