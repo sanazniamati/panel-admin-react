@@ -1,7 +1,7 @@
 /** @format */
 
 import { FC, useState } from "react";
-import SideMenu from "./components/SideMenu/index";
+import AppSider from "./components/AppSider/index";
 import PageContent from "./components/PageContent";
 import { Layout } from "antd";
 import { MainLayoutProvider } from "./contex";
@@ -16,7 +16,7 @@ export const MainLayout: FC = () => {
       <Layout>
         <NotificationDrawer />
         <CommentsDrawer />
-        <SideMenu />
+        <AppSider />
         <PageContent />
       </Layout>
     </MainLayoutProvider>

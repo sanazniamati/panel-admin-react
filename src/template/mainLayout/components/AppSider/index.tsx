@@ -7,33 +7,29 @@ const { Sider } = Layout;
 // img
 import Brand from "../../../../assets/img/Brand..png";
 import { useMediaQuery } from "../../../../hooks/mediaQuery";
-import AppMenu from "../AppMenu";
+import SiderMenu from "../SiderMenu";
 import { useMainLayoutContext } from "../../contex";
+import { BreakPoints } from "../../../../constants/breakPointsNumber";
 
-const SideMenu: React.FC = () => {
+const AppSider: React.FC = () => {
   const { values, dispatch } = useMainLayoutContext();
   const { collapsed, openDrawer } = values;
   const { setCollapsed, setOpenDrawer } = dispatch;
 
-  const isLaptop = useMediaQuery(991);
+  const isLaptop = useMediaQuery(BreakPoints.laptop); //greater than 991 is laptob size
 
-  const showDrawer = () => {
-    setOpenDrawer(true);
-  };
+  // const menu = <SiderMenu />;
 
-  const onClose = () => {
-    setOpenDrawer(false);
-  };
-  const menu = <AppMenu />;
   if (!isLaptop) {
     return (
-      <Drawer title="Basic Drawer" onClose={onClose} open={openDrawer}>
-        {menu}
+      <Drawer title="Basic Drawer" onClose={() => setOpenDrawer(false)} open={openDrawer}>
+        <SiderMenu />
       </Drawer>
     );
   }
+
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Sider trigger={null} collapsible collapsed={collapsed} className=" relative">
       <>
         <Space style={{ paddingLeft: 32, paddingBottom: 16, paddingTop: 32 }}>
           <img src={Brand} alt="Brand" style={{ height: 16 }} />
@@ -43,21 +39,16 @@ const SideMenu: React.FC = () => {
           type="text"
           icon={collapsed ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
           onClick={() => setCollapsed(!collapsed)}
+          className={`bg-red-600 absolute top-[16px] z-10 ${collapsed ? "left-[60px]" : "left-[180px]"} `}
           style={{
-            background: "red",
-            position: "absolute",
-            left: collapsed ? 60 : 180,
-            top: 16,
-            fontSize: "16px",
             width: 40,
             height: 40,
-            zIndex: 3,
           }}
         />
-        {menu}
+        <SiderMenu />
       </>
     </Sider>
   );
 };
 
-export default SideMenu;
+export default AppSider;

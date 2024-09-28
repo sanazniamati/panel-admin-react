@@ -5,7 +5,7 @@ import { menuItems } from "./menuItems";
 import { Menu } from "antd";
 import { useEffect, useState } from "react";
 
-const AppMenu = () => {
+const SiderMenu = () => {
   const navigate = useNavigate();
   const [selectedKeys, setSelectedKeys] = useState("/customers");
   useEffect(() => {
@@ -28,4 +28,4 @@ const AppMenu = () => {
   );
 };
 
-export default AppMenu;
+export default SiderMenu;
