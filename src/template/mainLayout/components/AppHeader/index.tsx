@@ -30,20 +30,8 @@ const AppHeader: React.FC = () => {
   const isLaptop = useMediaQuery(BreakPoints.laptop); //greater than 991 is laptob size
   const { dispatch } = useMainLayoutContext();
   const { setOpenDrawer, setOpenNotificationDrawer, setOpenCommentsDrawer } = dispatch;
-  // const {
-  //   token: { colorBgContainer },
-  // } = theme.useToken();
 
   return (
-    // <Header
-    //   style={{
-    //     display: "flex",
-    //     alignItems: "center",
-    //     justifyContent: "space-between",
-    //     padding: "0px 32px 0px 32px",
-    //     // background: colorBgContainer,
-    //   }}
-    // >
     <Flex justify={!isLaptop ? "space-between" : "end"} className=" px-8 py-3 w-full">
       {!isLaptop && (
         <MenuOutlined
@@ -55,7 +43,7 @@ const AppHeader: React.FC = () => {
       )}
       <Flex gap={12} align="center">
         <Button
-          className=" h-10 w-10"
+          className="headerButton"
           onClick={() => {
             setOpenNotificationDrawer(true);
           }}
@@ -65,7 +53,7 @@ const AppHeader: React.FC = () => {
           </Badge>
         </Button>
 
-        <Button className="h-10 w-10" onClick={() => setOpenCommentsDrawer(true)}>
+        <Button className="headerButton" onClick={() => setOpenCommentsDrawer(true)}>
           <MailOutlined />
         </Button>
 

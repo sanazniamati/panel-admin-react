@@ -14,7 +14,7 @@ import { replace } from "lodash";
 import DesignSystem from "../Pages/private/DesignSystem";
 import NewCustomerByFile from "../module/NewCustomerByFIle";
 import EditCustomer from "../module/EditCustomer";
-import DetailCustomer from "../module/DetailCustomer";
+import DetailCustomer from "../module/ShowCustomer";
 export const privateRoute: RouteObject[] = [
   {
     path: ROUTES.home,
@@ -24,18 +24,12 @@ export const privateRoute: RouteObject[] = [
         path: ROUTES.home,
         element: <Dashboard />,
       },
-      // TODO :<Navigate to="/login" replace/>
-      // {
-      //   path: ROUTES.home,
-      //   element: {<Navigate to="/login" replace/>},
-      // },
       {
         path: ROUTES.customers,
         element: <Customers />,
       },
-      // route NewCustomerChild :newCustomerByFile,newCustomerManully,editCustomer,detailCustomer
       {
-        path: ROUTES.newCustomerManully,
+        path: ROUTES.newCustomer,
         element: <NewCustomer />,
       },
       {
@@ -47,7 +41,7 @@ export const privateRoute: RouteObject[] = [
         element: <EditCustomer />,
       },
       {
-        path: ROUTES.detailCustomer,
+        path: ROUTES.showCustomer,
         element: <DetailCustomer />,
       },
       {
