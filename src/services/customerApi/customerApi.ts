@@ -1,7 +1,7 @@
 /** @format */
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ICustomerPayload } from "../../models/customerType";
+import { ICustomer, ICustomerPayload } from "../../models/customerType";
 
 export const customerApi = createApi({
   reducerPath: "customerApi",
@@ -15,7 +15,43 @@ export const customerApi = createApi({
         return "customers";
       },
     }),
+
+    getCustomerById: builder.query<ICustomer, string>({
+      query: (id) => `customers/${id}`,
+      transformResponse(res: ICustomerPayload) {
+        const birthDateArr = res.birthDayDate.split("/");
+        console.log(birthDateArr);
+        console.log("getCustomerById: ", res.id);
+
+        return {
+          id: res.id,
+          firstName: res.firstName,
+          lastName: res.lastName,
+          idNumber: res.idNumber,
+          day: birthDateArr[0],
+          month: birthDateArr[1],
+          year: birthDateArr[2],
+          phoneNumber: res.phoneNumber,
+          status: res.status,
+          email: res.email,
+        };
+      },
+    }),
+
+    editCustomerById: builder.mutation<void, ICustomerPayload>({
+      query: ({ id, ...rest }) => ({
+        method: "PUT",
+        url: `customers/${id}`,
+        body: rest,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllCustomersQuery, useLazyGetAllCustomersQuery } = customerApi;
+export const {
+  useGetAllCustomersQuery,
+  useLazyGetAllCustomersQuery,
+  useGetCustomerByIdQuery,
+  useLazyGetCustomerByIdQuery,
+  useEditCustomerByIdMutation,
+} = customerApi;

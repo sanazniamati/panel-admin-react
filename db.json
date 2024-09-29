@@ -1,34 +1,32 @@
 {
   "customers": [
     {
-      "firstName": "ziba",
+      "firstName": "zibaaaa",
       "lastName": "shahabi",
       "idNumber": "123456789",
-      "birthDayDate": "03/03/",
+      "birthDayDate": "03/03/2001",
       "phoneNumber": "09395789412",
-      "status": 2,
+      "status": 3,
       "email": "nooshin@gmail.com",
       "id": "68e00db922f48455465040c2"
     },
     {
-      "id": "1a2e",
-      "firstName": "mary",
+      "firstName": "sanazi",
       "lastName": "abaspour",
       "idNumber": "123456789",
-      "birthDayDate": "09/10/2023",
+      "birthDayDate": "01/02/2001",
       "phoneNumber": "09368794520",
-      "status": 1,
-      "email": "elehe@gmail.com"
+      "email": "elehe@gmail.com",
+      "id": "1a2e"
     },
     {
-      "id": "da61",
-      "firstName": "sahar",
-      "lastName": "rajabi",
+      "firstName": "sanaz",
+      "lastName": "nimati",
       "idNumber": "852369741",
-      "birthDayDate": "03/04/2019",
+      "birthDayDate": "01/04/2019",
       "phoneNumber": "0936852147",
-      "status": 1,
-      "email": "sahar@gmail.com"
+      "email": "sahar@gmail.com",
+      "id": "da61"
     },
     {
       "id": "ab1a",
@@ -51,24 +49,22 @@
       "email": "maryam@yahoo.com"
     },
     {
-      "id": "8fcb",
-      "firstName": "majid",
-      "lastName": "zibakalam",
+      "firstName": "mojtaba",
+      "lastName": "atashi",
       "idNumber": "2558947132",
-      "birthDayDate": "02/07/1997",
+      "birthDayDate": "31/07/1997",
       "phoneNumber": "09387942563",
-      "status": 1,
-      "email": "majid@gmail.com"
+      "email": "majid@gmail.com",
+      "id": "8fcb"
     },
     {
-      "id": "7c9c",
       "firstName": "ali",
       "lastName": "alavi",
       "idNumber": "1234563",
-      "birthDayDate": "13/11/2005",
+      "birthDayDate": "31/11/2005",
       "phoneNumber": "215662236",
-      "status": 2,
-      "email": "ali@gmail.com"
+      "email": "ali@gmail.com",
+      "id": "7c9c"
     }
   ]
 }
