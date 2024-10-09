@@ -25,11 +25,28 @@ const items: MenuProps["items"] = [
   },
 ];
 
+import io from "socket.io-client";
+import { useEffect, useState } from "react";
+const socket = io("http://localhost:5000");
+
 const AppHeader: React.FC = () => {
   const userName = useAppSelector(selectUsername);
   const isLaptop = useMediaQuery(BreakPoints.laptop); //greater than 991 is laptob size
   const { dispatch } = useMainLayoutContext();
   const { setOpenDrawer, setOpenNotificationDrawer, setOpenCommentsDrawer } = dispatch;
+
+  const [message, setMessage] = useState("");
+  const [messageReceived, setMessageReceived] = useState("");
+
+  const sendMessage = () => {
+    socket.emit("send-Message", { message: message });
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageReceived(data.message);
+    });
+  });
 
   return (
     <Flex justify={!isLaptop ? "space-between" : "end"} className=" px-8 py-3 w-full">
@@ -56,6 +73,9 @@ const AppHeader: React.FC = () => {
         <Button className="headerButton" onClick={() => setOpenCommentsDrawer(true)}>
           <MailOutlined />
         </Button>
+        <input placeholder="message ..." onChange={(e) => setMessage(e.target.value)} />
+        <button onClick={sendMessage}>send message</button>
+        <h1>Message:{messageReceived}</h1>
 
         <Flex align="center" justify="center" gap={8} className="border rounded-md bg-white h-10 px-2">
           <Image src={Avatar} alt="Avatar" width={24} height={24} />
@@ -69,7 +89,6 @@ const AppHeader: React.FC = () => {
         </Flex>
       </Flex>
     </Flex>
-    // </Header>
   );
 };
 
