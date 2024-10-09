@@ -16,7 +16,17 @@ export const authApi = createApi({
         };
       },
     }),
+
+    getMe: builder.query<void, string>({
+      query: (token) => ({
+        url: "users/me",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useLoginUserMutation } = authApi;
+export const { useLoginUserMutation, useGetMeQuery, useLazyGetMeQuery } = authApi;

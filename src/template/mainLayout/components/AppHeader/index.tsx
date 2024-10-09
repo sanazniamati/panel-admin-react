@@ -2,7 +2,7 @@
 import { BellOutlined, DownOutlined, MailOutlined, MenuOutlined } from "@ant-design/icons";
 import { Badge, Button, Dropdown, Flex, Image, Layout, MenuProps, Space, Typography } from "antd";
 import Avatar from "../../../../assets/img/avatar.jfif";
-import { selectAuthName } from "../../../../featchers/auth/authSlice";
+import { selectUsername } from "../../../../featchers/auth/authSlice";
 import { useAppSelector } from "../../../../app/hooks";
 import { useMediaQuery } from "../../../../hooks/mediaQuery";
 import { useMainLayoutContext } from "../../contex";
@@ -26,7 +26,7 @@ const items: MenuProps["items"] = [
 ];
 
 const AppHeader: React.FC = () => {
-  const userName = useAppSelector(selectAuthName);
+  const userName = useAppSelector(selectUsername);
   const isLaptop = useMediaQuery(BreakPoints.laptop); //greater than 991 is laptob size
   const { dispatch } = useMainLayoutContext();
   const { setOpenDrawer, setOpenNotificationDrawer, setOpenCommentsDrawer } = dispatch;

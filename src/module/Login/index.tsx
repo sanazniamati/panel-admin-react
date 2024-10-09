@@ -20,7 +20,7 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
 const initialState = {
   email: "",
   password: "",
-  remember: true,
+  remember: false,
   mobile: "",
   captcha: "",
 };

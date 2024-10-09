@@ -15,7 +15,7 @@ import DesignSystem from "../Pages/private/DesignSystem";
 import NewCustomerByFile from "../module/NewCustomerByFIle";
 import EditCustomer from "../module/EditCustomer";
 import DetailCustomer from "../module/ShowCustomer";
-export const privateRoute: RouteObject[] = [
+export const privateRoutes: RouteObject[] = [
   {
     path: ROUTES.home,
     element: <MainLayout />,

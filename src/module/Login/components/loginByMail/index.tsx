@@ -1,17 +1,18 @@
 /** @format */
 
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { App, Button, Checkbox, Form, FormProps, Input } from "antd";
+import { App, Button, Checkbox, Flex, Form, FormProps, Input } from "antd";
 import { FieldType } from "../../types/loginFieldType";
 import { useLoginUserMutation } from "../../../../services/authApi/authApi";
-import { toast } from "react-toastify";
+import Link from "antd/es/typography/Link";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { setUser } from "../../../../featchers/auth/authSlice";
 import { ROUTES } from "../../../../routes/routesUrls";
+import { useState } from "react";
 
 const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, setFormValue }: any) => {
+  const [rememberChecked, setRememberChecked] = useState<boolean>(false);
   const navegate = useNavigate();
   const { message } = App.useApp();
 
@@ -29,13 +30,16 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
     await trigger({ email: email, password: password }).then((result) => {
       if (result.data) {
         message.success("Login successful");
-        dispatch(setUser({ token: result.data?.token, name: result.data?.user.name }));
-        navegate(ROUTES.home);
+        dispatch(
+          setUser({ token: result.data?.token, name: result.data?.user.name, rememberChecked: rememberChecked })
+        );
+        navegate(ROUTES.customers);
       }
     });
   };
   const handleOnChange = (e: any) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
+    console.log("remember", remember);
   };
 
   const handleLoginByMail = async () => {
@@ -58,13 +62,27 @@ const LoginByMail = ({ onFinishFailed, autoLogin, changeAutoLogin, formValue, se
           />
         </Form.Item>
         {/* <Form.Item<FieldType>>
-          <Checkbox name="remember" value={remember} checked={autoLogin} onChange={changeAutoLogin}>
+          <Checkbox name="remember" value={remember} onChange={handleOnChange}>
             Keep me logged in
           </Checkbox>
           <a style={{ float: "right" }} href="">
             Forgot password
           </a>
         </Form.Item> */}
+        <Flex justify="space-between" className="py-3">
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox
+              checked={rememberChecked}
+              onChange={(e) => {
+                setRememberChecked(e.target.checked), console.log(rememberChecked);
+              }}
+            >
+              Remember me
+            </Checkbox>
+          </Form.Item>
+
+          <Link href="#"> Forgot password?</Link>
+        </Flex>
         <Form.Item>
           <Button type="primary" htmlType="submit" block onClick={handleLoginByMail}>
             Login
